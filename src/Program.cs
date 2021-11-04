@@ -65,10 +65,13 @@ namespace sourcemod_launcher
             }
             catch (Exception ex)
             {
+                StringBuilder message = new StringBuilder();
+                message.AppendLine("Catastrophic disaster of epic proportions!");
+                message.AppendLine(ex.ToString());
+                message.AppendLine(ex.InnerException?.ToString());
+                message.AppendLine("Tell 2838 all that and that he's bad at code!");
                 MessageBox.Show(
-                    "Catastrophic disaster of epic proportion!" + "\r\n\r\n" +
-                    ex.ToString() + "\r\n\r\n" + 
-                    ("Tell 2838 all that and that he's bad at code!"), 
+                    message.ToString(), 
                     "Error!", 
                     MessageBoxButtons.OK, 
                     MessageBoxIcon.Error);

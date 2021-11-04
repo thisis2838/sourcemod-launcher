@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace sourcemod_launcher.Forms
 {
@@ -45,6 +46,15 @@ namespace sourcemod_launcher.Forms
             Mod.WriteSettings();
             Modified = true;
             this.Close();
+        }
+
+        private void butBrowseGame_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Game Executable|*.exe";
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+                boxGamePath.Text = openFileDialog.FileName;
         }
     }
 }

@@ -163,7 +163,15 @@ namespace sourcemod_launcher
         public string GetLauncher()
         {
             if (UsesSteamId)
-                return ConvertAppId(int.Parse(LauncherPath.Trim('s')));
+            {
+                if (!int.TryParse(LauncherPath.TrimStart('s'), out int appId))
+                {
+                    LauncherPath = LauncherPath.Substring(1);
+                    return LauncherPath;
+                }
+                return ConvertAppId(appId);
+            }
+                
             return LauncherPath;
         }
 
@@ -184,6 +192,7 @@ namespace sourcemod_launcher
             Directory.Delete(FilePath, true);
         }
 
+        // defaults
         public static List<Tuple<int, string>> SteamAppIDNames = new List<Tuple<int, string>>()
         {
             new Tuple<int, string>(215, "Source SDK Base 2006"),
@@ -202,6 +211,21 @@ namespace sourcemod_launcher
             if (SteamAppIDNames.Any(x => x.Item1 == id))
                 return SteamAppIDNames.Where(x => x.Item1 == id).First().Item2;
             return "steamappid:" + id;
+        }
+
+        public void MakeShortcut(string filePath)
+        {
+            StringBuilder sb = new StringBuilder();
+            string launchOptions = GeneralSettings.Get(0) + " " + LaunchOptions;
+            if (UsesSteamId)
+                sb.Append($"\"{SteamExe}\" -applaunch {LauncherPath.Trim('s')} {launchOptions}");
+            else
+                sb.Append($"\"{LauncherPath}\" {launchOptions}");
+
+            sb.AppendLine($" -game \"{FilePath}\"");
+            sb.AppendLine("exit");
+
+            File.WriteAllText(filePath, sb.ToString());
         }
     }
 }

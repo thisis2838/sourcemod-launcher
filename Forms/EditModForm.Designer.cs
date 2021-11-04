@@ -30,18 +30,18 @@ namespace sourcemod_launcher.Forms
         private void InitializeComponent()
         {
             this.gModInfo = new System.Windows.Forms.GroupBox();
+            this.butBrowseGame = new System.Windows.Forms.Button();
             this.tableModInfo = new System.Windows.Forms.TableLayoutPanel();
+            this.boxDisplayedName = new System.Windows.Forms.TextBox();
             this.labModNameLabel = new System.Windows.Forms.Label();
             this.labDisplayedNameLabel = new System.Windows.Forms.Label();
-            this.labLaunchParamsLabel = new System.Windows.Forms.Label();
-            this.boxLaunchParams = new System.Windows.Forms.TextBox();
             this.labGameLabel = new System.Windows.Forms.Label();
             this.boxModName = new System.Windows.Forms.TextBox();
-            this.boxDisplayedName = new System.Windows.Forms.TextBox();
             this.boxDisplayedNameSecond = new System.Windows.Forms.TextBox();
             this.boxGamePath = new System.Windows.Forms.TextBox();
+            this.labLaunchParamsLabel = new System.Windows.Forms.Label();
+            this.boxLaunchParams = new System.Windows.Forms.TextBox();
             this.chkSteamAppID = new System.Windows.Forms.CheckBox();
-            this.butBrowseGame = new System.Windows.Forms.Button();
             this.butCancel = new System.Windows.Forms.Button();
             this.butSave = new System.Windows.Forms.Button();
             this.gModInfo.SuspendLayout();
@@ -58,6 +58,16 @@ namespace sourcemod_launcher.Forms
             this.gModInfo.TabIndex = 2;
             this.gModInfo.TabStop = false;
             this.gModInfo.Text = "Mod Info";
+            // 
+            // butBrowseGame
+            // 
+            this.butBrowseGame.Location = new System.Drawing.Point(434, 96);
+            this.butBrowseGame.Name = "butBrowseGame";
+            this.butBrowseGame.Size = new System.Drawing.Size(75, 23);
+            this.butBrowseGame.TabIndex = 3;
+            this.butBrowseGame.Text = "Browse";
+            this.butBrowseGame.UseVisualStyleBackColor = true;
+            this.butBrowseGame.Click += new System.EventHandler(this.butBrowseGame_Click);
             // 
             // tableModInfo
             // 
@@ -86,6 +96,13 @@ namespace sourcemod_launcher.Forms
             this.tableModInfo.Size = new System.Drawing.Size(421, 150);
             this.tableModInfo.TabIndex = 0;
             // 
+            // boxDisplayedName
+            // 
+            this.boxDisplayedName.Location = new System.Drawing.Point(128, 28);
+            this.boxDisplayedName.Name = "boxDisplayedName";
+            this.boxDisplayedName.Size = new System.Drawing.Size(290, 20);
+            this.boxDisplayedName.TabIndex = 9;
+            // 
             // labModNameLabel
             // 
             this.labModNameLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -106,6 +123,37 @@ namespace sourcemod_launcher.Forms
             this.labDisplayedNameLabel.TabIndex = 1;
             this.labDisplayedNameLabel.Text = "Displayed Name";
             // 
+            // labGameLabel
+            // 
+            this.labGameLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.labGameLabel.AutoSize = true;
+            this.labGameLabel.Location = new System.Drawing.Point(3, 81);
+            this.labGameLabel.Name = "labGameLabel";
+            this.labGameLabel.Size = new System.Drawing.Size(35, 13);
+            this.labGameLabel.TabIndex = 4;
+            this.labGameLabel.Text = "Game";
+            // 
+            // boxModName
+            // 
+            this.boxModName.Location = new System.Drawing.Point(128, 3);
+            this.boxModName.Name = "boxModName";
+            this.boxModName.Size = new System.Drawing.Size(290, 20);
+            this.boxModName.TabIndex = 8;
+            // 
+            // boxDisplayedNameSecond
+            // 
+            this.boxDisplayedNameSecond.Location = new System.Drawing.Point(128, 53);
+            this.boxDisplayedNameSecond.Name = "boxDisplayedNameSecond";
+            this.boxDisplayedNameSecond.Size = new System.Drawing.Size(290, 20);
+            this.boxDisplayedNameSecond.TabIndex = 10;
+            // 
+            // boxGamePath
+            // 
+            this.boxGamePath.Location = new System.Drawing.Point(128, 78);
+            this.boxGamePath.Name = "boxGamePath";
+            this.boxGamePath.Size = new System.Drawing.Size(290, 20);
+            this.boxGamePath.TabIndex = 11;
+            // 
             // labLaunchParamsLabel
             // 
             this.labLaunchParamsLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -124,44 +172,6 @@ namespace sourcemod_launcher.Forms
             this.boxLaunchParams.TabIndex = 7;
             this.boxLaunchParams.WordWrap = false;
             // 
-            // labGameLabel
-            // 
-            this.labGameLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.labGameLabel.AutoSize = true;
-            this.labGameLabel.Location = new System.Drawing.Point(3, 81);
-            this.labGameLabel.Name = "labGameLabel";
-            this.labGameLabel.Size = new System.Drawing.Size(35, 13);
-            this.labGameLabel.TabIndex = 4;
-            this.labGameLabel.Text = "Game";
-            // 
-            // boxModName
-            // 
-            this.boxModName.Location = new System.Drawing.Point(128, 3);
-            this.boxModName.Name = "boxModName";
-            this.boxModName.Size = new System.Drawing.Size(290, 20);
-            this.boxModName.TabIndex = 8;
-            // 
-            // boxDisplayedName
-            // 
-            this.boxDisplayedName.Location = new System.Drawing.Point(128, 28);
-            this.boxDisplayedName.Name = "boxDisplayedName";
-            this.boxDisplayedName.Size = new System.Drawing.Size(290, 20);
-            this.boxDisplayedName.TabIndex = 9;
-            // 
-            // boxDisplayedNameSecond
-            // 
-            this.boxDisplayedNameSecond.Location = new System.Drawing.Point(128, 53);
-            this.boxDisplayedNameSecond.Name = "boxDisplayedNameSecond";
-            this.boxDisplayedNameSecond.Size = new System.Drawing.Size(290, 20);
-            this.boxDisplayedNameSecond.TabIndex = 10;
-            // 
-            // boxGamePath
-            // 
-            this.boxGamePath.Location = new System.Drawing.Point(128, 78);
-            this.boxGamePath.Name = "boxGamePath";
-            this.boxGamePath.Size = new System.Drawing.Size(290, 20);
-            this.boxGamePath.TabIndex = 11;
-            // 
             // chkSteamAppID
             // 
             this.chkSteamAppID.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -172,15 +182,6 @@ namespace sourcemod_launcher.Forms
             this.chkSteamAppID.TabIndex = 12;
             this.chkSteamAppID.Text = "Steam App ID";
             this.chkSteamAppID.UseVisualStyleBackColor = true;
-            // 
-            // butBrowseGame
-            // 
-            this.butBrowseGame.Location = new System.Drawing.Point(434, 96);
-            this.butBrowseGame.Name = "butBrowseGame";
-            this.butBrowseGame.Size = new System.Drawing.Size(75, 23);
-            this.butBrowseGame.TabIndex = 3;
-            this.butBrowseGame.Text = "Browse";
-            this.butBrowseGame.UseVisualStyleBackColor = true;
             // 
             // butCancel
             // 

@@ -18,10 +18,19 @@ namespace sourcemod_launcher
     {
         private List<SourceMod> _mods;
         private int _dgvModsCurrentlySelected => dgvMods.SelectedCells[0].RowIndex;
-        private SourceMod _currentSelectedMod =>
-            dgvMods.SelectedCells.Count == 0 ?
-            _mods.First() :
-            _mods.Where(x => x.FilePath == (string)dgvMods.Rows[_dgvModsCurrentlySelected].Cells[5].Value).First();
+        private SourceMod _currentSelectedMod
+        {
+            get
+            {
+                if (_mods.Count == 0)
+                    return null;
+
+                if (dgvMods.SelectedCells.Count == 0)
+                    return _mods.First();
+                return _mods.Where(x => x.FilePath == (string)dgvMods.Rows[_dgvModsCurrentlySelected].Cells[5].Value).First();
+            }
+        }
+
         private int ModIndexToDGVIndex(int modIndex)
         {
             foreach (DataGridViewRow row in dgvMods.Rows)
@@ -51,12 +60,14 @@ namespace sourcemod_launcher
             {
                 if (!OmittedSettings.Entries.Contains(x))
                 {
-                    try 
-                    { 
-                        var mod = new SourceMod(x);
-                        AddMod(mod);
-                    }
-                    catch {  }
+                    SourceMod mod = null;
+                    try { mod = new SourceMod(x); }
+                    catch { goto end; }
+
+                    AddMod(mod);
+
+                    end:
+                    ;
                 }
             });
             dgvMods.ClearSelection();
@@ -250,6 +261,19 @@ namespace sourcemod_launcher
         private void butExplore_Click(object sender, EventArgs e)
         {
             Process.Start(_currentSelectedMod.FilePath);
+        }
+
+        private void butShortcut_Click(object sender, EventArgs e)
+        {
+            if (_currentSelectedMod == null)
+                return;
+
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "bat file|*.bat";
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                _currentSelectedMod.MakeShortcut(saveFileDialog.FileName);
+            }
         }
     }
 }

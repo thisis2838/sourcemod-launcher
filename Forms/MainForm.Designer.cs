@@ -59,6 +59,7 @@ namespace sourcemod_launcher
             this.boxCommonLaunchParams = new System.Windows.Forms.TextBox();
             this.rboxDragDrop = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.butShortcut = new System.Windows.Forms.Button();
             this.gModList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMods)).BeginInit();
             this.gModInfo.SuspendLayout();
@@ -71,6 +72,7 @@ namespace sourcemod_launcher
             this.gModList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.gModList.Controls.Add(this.butShortcut);
             this.gModList.Controls.Add(this.butExplore);
             this.gModList.Controls.Add(this.butEditMod);
             this.gModList.Controls.Add(this.butRemoveMod);
@@ -397,6 +399,17 @@ namespace sourcemod_launcher
             this.label1.TabIndex = 4;
             this.label1.Text = "SourceMod Launcher - by 2838 - October 2021";
             // 
+            // butShortcut
+            // 
+            this.butShortcut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.butShortcut.Location = new System.Drawing.Point(295, 271);
+            this.butShortcut.Name = "butShortcut";
+            this.butShortcut.Size = new System.Drawing.Size(91, 23);
+            this.butShortcut.TabIndex = 5;
+            this.butShortcut.Text = "Make Shortcut";
+            this.butShortcut.UseVisualStyleBackColor = true;
+            this.butShortcut.Click += new System.EventHandler(this.butShortcut_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -455,5 +468,6 @@ namespace sourcemod_launcher
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcFilePath;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcLaunchParams;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcFullPath;
+        private System.Windows.Forms.Button butShortcut;
     }
 }
